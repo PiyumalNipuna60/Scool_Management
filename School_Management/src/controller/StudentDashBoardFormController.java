@@ -40,6 +40,7 @@ public class StudentDashBoardFormController {
         }catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        ClearField();
     }
 
     public void UpdateOnAction(ActionEvent actionEvent) {
@@ -55,6 +56,7 @@ public class StudentDashBoardFormController {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+        ClearField();
     }
 
     public void DeleteOnAction(ActionEvent actionEvent) {
@@ -65,6 +67,7 @@ public class StudentDashBoardFormController {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+        ClearField();
     }
 
     public void SearchStudentOnACtion(ActionEvent actionEvent) {
@@ -83,4 +86,15 @@ public class StudentDashBoardFormController {
             e.printStackTrace();
         }
     }
+
+    private void ClearField(){
+        txtStudentId.clear();
+        txtStudentName.clear();
+        txtStudentEmail.clear();
+        txtStudentContact.clear();
+        txtStudentAddress.clear();
+        txtStudentNic.clear();
+    }
 }
+
+
