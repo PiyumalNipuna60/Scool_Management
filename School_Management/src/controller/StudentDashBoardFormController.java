@@ -41,7 +41,7 @@ public class StudentDashBoardFormController {
 
     public void initialize() {
 
-        colStudentId.setCellValueFactory(new PropertyValueFactory<>("std"));
+        colStudentId.setCellValueFactory(new PropertyValueFactory<>("sId"));
         colSName.setCellValueFactory(new PropertyValueFactory<>("sName"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("sEmail"));
         colContact.setCellValueFactory(new PropertyValueFactory<>("sContact"));
@@ -70,7 +70,6 @@ public class StudentDashBoardFormController {
                 );
             }
             tblStudent.setItems(obList1);
-
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
