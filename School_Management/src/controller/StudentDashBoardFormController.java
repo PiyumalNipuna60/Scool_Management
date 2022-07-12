@@ -1,10 +1,14 @@
 package controller;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Duration;
 import model.Student;
 import util.CrudUtil;
 import views.TM.tableTm;
@@ -12,6 +16,9 @@ import views.TM.tableTm;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.Date;
 
 public class StudentDashBoardFormController {
     public TextField txtStudentId;
@@ -42,6 +49,7 @@ public class StudentDashBoardFormController {
         colNic.setCellValueFactory(new PropertyValueFactory<>("sNic"));
 
         LoadAllStudent();
+        LoadDateAndTime();
     }
 
     private void LoadAllStudent() {
@@ -147,6 +155,21 @@ public class StudentDashBoardFormController {
 
     public void clearTextFieldOnAction(ActionEvent actionEvent) {
         ClearField();
+    }
+
+    private void LoadDateAndTime() {
+        lblDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, event -> {
+            LocalTime currentTime = LocalTime.now();
+            lblTime.setText(currentTime.getHour() + ":" +
+                    currentTime.getMinute() + ":" +
+                    currentTime.getSecond());
+        }),
+                new KeyFrame(Duration.seconds(1))
+        );
+        clock.setCycleCount(Animation.INDEFINITE);
+        clock.play();
     }
 }
 

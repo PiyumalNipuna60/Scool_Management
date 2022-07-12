@@ -7,14 +7,21 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="568.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentDashBoardFormController">
    <children>
+      <ImageView fitHeight="568.0" fitWidth="1025.0" pickOnBounds="true">
+         <image>
+            <Image url="@assests/images.jpg.jpg" />
+         </image>
+      </ImageView>
       <Label layoutX="14.0" layoutY="14.0" text="Student Managementbel">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
       <TextField fx:id="txtStudentId" layoutX="31.0" layoutY="75.0" onAction="#SearchStudentOnACtion" prefHeight="31.0" prefWidth="154.0" promptText="Student Id" />
