@@ -43,6 +43,18 @@ public class StudentDashBoardFormController {
     }
 
     public void UpdateOnAction(ActionEvent actionEvent) {
+        Student s=new Student(
+                txtStudentId.getText(),txtStudentName.getText(),txtStudentEmail.getText(),txtStudentContact.getText(),txtStudentAddress.getText(),txtStudentNic.getText()
+        );
+        try {
+            if (CrudUtil.execute("UPDATE Student SET student_name=?,email=?,contact=?,address=?,nic=? WHERE student_id=?",s.getsName(),s.getsEmail(),s.getsContact(),s.getsAddress(),s.getsNic(),s.getsId())){
+                new Alert(Alert.AlertType.CONFIRMATION, "Updated!..").show();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Something Wrong!..").show();
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void DeleteOnAction(ActionEvent actionEvent) {
