@@ -146,6 +146,7 @@ public class StudentDashBoardFormController {
     }
 
     public void clearTextFieldOnAction(ActionEvent actionEvent) {
+        ClearField();
     }
 }
 
