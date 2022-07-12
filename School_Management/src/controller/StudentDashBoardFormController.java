@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import model.Student;
 import util.CrudUtil;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class StudentDashBoardFormController {
@@ -48,5 +49,19 @@ public class StudentDashBoardFormController {
     }
 
     public void SearchStudentOnACtion(ActionEvent actionEvent) {
+        try {
+            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Student WHERE student_id=?",txtStudentId.getText());
+            if (resultSet.next()){
+                txtStudentName.setText(resultSet.getString(2));
+                txtStudentEmail.setText(resultSet.getString(3));
+                txtStudentContact.setText(resultSet.getString(4));
+                txtStudentAddress.setText(resultSet.getString(5));
+                txtStudentNic.setText(resultSet.getString(6));
+            }else {
+                new Alert(Alert.AlertType.WARNING,"Empty Result!..").show();
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
