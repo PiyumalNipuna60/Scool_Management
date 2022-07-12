@@ -8,10 +8,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import model.Student;
 import util.CrudUtil;
-import views.TM.tableTm;
 
 
 import java.sql.ResultSet;
@@ -27,7 +28,7 @@ public class StudentDashBoardFormController {
     public TextField txtStudentEmail;
     public TextField txtStudentName;
     public TextField txtStudentNic;
-    public TableView<tableTm> tblStudent;
+    public TableView tblStudent;
     public TableColumn colStudentId;
     public TableColumn colEmail;
     public TableColumn colContact;
@@ -41,25 +42,30 @@ public class StudentDashBoardFormController {
 
     public void initialize() {
 
-        colStudentId.setCellValueFactory(new PropertyValueFactory<>("sId"));
-        colSName.setCellValueFactory(new PropertyValueFactory<>("sName"));
-        colEmail.setCellValueFactory(new PropertyValueFactory<>("sEmail"));
-        colContact.setCellValueFactory(new PropertyValueFactory<>("sContact"));
-        colAddress.setCellValueFactory(new PropertyValueFactory<>("sAddress"));
-        colNic.setCellValueFactory(new PropertyValueFactory<>("sNic"));
+        colStudentId.setCellValueFactory(new PropertyValueFactory<>("student_id"));
+        colSName.setCellValueFactory(new PropertyValueFactory<>("student_name"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colNic.setCellValueFactory(new PropertyValueFactory<>("nic"));
 
-        LoadAllStudent();
+        try {
+            LoadAllStudent();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         LoadDateAndTime();
     }
 
-    private void LoadAllStudent() {
-        try {
+    private void LoadAllStudent() throws SQLException, ClassNotFoundException {
             ResultSet resultSet = CrudUtil.execute("SELECT * FROM Student");
 
-            ObservableList<tableTm> obList1=FXCollections.observableArrayList();
+            ObservableList<Student> obList1=FXCollections.observableArrayList();
             while (resultSet.next()){
                 obList1.add(
-                        new tableTm(
+                        new Student(
                                 resultSet.getString("student_id"),
                                 resultSet.getString("student_name"),
                                 resultSet.getString("email"),
@@ -70,9 +76,7 @@ public class StudentDashBoardFormController {
                 );
             }
             tblStudent.setItems(obList1);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
+
 
     }
 
@@ -81,7 +85,7 @@ public class StudentDashBoardFormController {
                 txtStudentId.getText(),txtStudentName.getText(),txtStudentEmail.getText(),txtStudentContact.getText(),txtStudentAddress.getText(),txtStudentNic.getText()
         );
         try {
-            if (CrudUtil.execute("INSERT INTO Student VALUES(?,?,?,?,?,?)", s.getsId(), s.getsName(), s.getsEmail(), s.getsContact(), s.getsAddress(), s.getsNic())) {
+            if (CrudUtil.execute("INSERT INTO Student VALUES(?,?,?,?,?,?)", s.getStudent_id(), s.getStudent_name(), s.getEmail(), s.getContact(), s.getAddress(), s.getNic())) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Save Customer!..").show();
                 LoadAllStudent();
             } else {
@@ -100,7 +104,7 @@ public class StudentDashBoardFormController {
                 txtStudentId.getText(),txtStudentName.getText(),txtStudentEmail.getText(),txtStudentContact.getText(),txtStudentAddress.getText(),txtStudentNic.getText()
         );
         try {
-            if (CrudUtil.execute("UPDATE Student SET student_name=?,email=?,contact=?,address=?,nic=? WHERE student_id=?",s.getsName(),s.getsEmail(),s.getsContact(),s.getsAddress(),s.getsNic(),s.getsId())){
+            if (CrudUtil.execute("UPDATE Student SET student_name=?,email=?,contact=?,address=?,nic=? WHERE student_id=?",s.getStudent_name(),s.getEmail(),s.getContact(),s.getAddress(),s.getNic(),s.getStudent_id())){
                 new Alert(Alert.AlertType.CONFIRMATION, "Updated!..").show();
                 LoadAllStudent();
             } else {
@@ -169,6 +173,12 @@ public class StudentDashBoardFormController {
         );
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
+    }
+
+    public void onKeyReleased(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            TextField.getClassCssMetaData();
+        }
     }
 }
 

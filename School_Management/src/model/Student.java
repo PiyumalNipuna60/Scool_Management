@@ -1,82 +1,82 @@
 package model;
 
 public class Student {
-    String sId;
-    String sName;
-    String sEmail;
-    String sContact;
-    String sAddress;
-    String sNic;
+    String student_id;
+    String student_name;
+    String email;
+    String contact;
+    String address;
+    String nic;
 
     public Student() {
     }
 
-    public Student(String sId, String sName, String sEmail, String sContact, String sAddress, String sNic) {
-        this.sId = sId;
-        this.sName = sName;
-        this.sEmail = sEmail;
-        this.sContact = sContact;
-        this.sAddress = sAddress;
-        this.sNic = sNic;
+    public Student(String student_id, String student_name, String email, String contact, String address, String nic) {
+        this.student_id = student_id;
+        this.student_name = student_name;
+        this.email = email;
+        this.contact = contact;
+        this.address = address;
+        this.nic = nic;
     }
 
-    public String getsId() {
-        return sId;
+    public String getStudent_id() {
+        return student_id;
     }
 
-    public void setsId(String sId) {
-        this.sId = sId;
+    public void setStudent_id(String student_id) {
+        this.student_id = student_id;
     }
 
-    public String getsName() {
-        return sName;
+    public String getStudent_name() {
+        return student_name;
     }
 
-    public void setsName(String sName) {
-        this.sName = sName;
+    public void setStudent_name(String student_name) {
+        this.student_name = student_name;
     }
 
-    public String getsEmail() {
-        return sEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setsEmail(String sEmail) {
-        this.sEmail = sEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getsContact() {
-        return sContact;
+    public String getContact() {
+        return contact;
     }
 
-    public void setsContact(String sContact) {
-        this.sContact = sContact;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
-    public String getsAddress() {
-        return sAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setsAddress(String sAddress) {
-        this.sAddress = sAddress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getsNic() {
-        return sNic;
+    public String getNic() {
+        return nic;
     }
 
-    public void setsNic(String sNic) {
-        this.sNic = sNic;
+    public void setNic(String nic) {
+        this.nic = nic;
     }
 
     @Override
     public String toString() {
         return "Student{" +
-                "sId='" + sId + '\'' +
-                ", sName='" + sName + '\'' +
-                ", sEmail='" + sEmail + '\'' +
-                ", sContact='" + sContact + '\'' +
-                ", sAddress='" + sAddress + '\'' +
-                ", sNic='" + sNic + '\'' +
+                "student_id='" + student_id + '\'' +
+                ", student_name='" + student_name + '\'' +
+                ", email='" + email + '\'' +
+                ", contact='" + contact + '\'' +
+                ", address='" + address + '\'' +
+                ", nic='" + nic + '\'' +
                 '}';
     }
 }
