@@ -58,6 +58,13 @@ public class StudentDashBoardFormController {
     }
 
     public void DeleteOnAction(ActionEvent actionEvent) {
+        try {
+            if (CrudUtil.execute("DELETE FROM Student WHERE student_id=?",txtStudentId.getText())) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Deleted!..").show();
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void SearchStudentOnACtion(ActionEvent actionEvent) {
