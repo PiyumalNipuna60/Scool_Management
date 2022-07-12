@@ -13,7 +13,7 @@ public class AppInitializer extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-//        Parent parent = FXMLLoader.load(getClass().getResource("views/DashBoardForm.fxml"));
+//        Parent parent = FXMLLoader.load(getClass().getResource("views/StudentDashBoardForm.fxml"));
 //        primaryStage.setScene(new Scene(parent));
 //        primaryStage.show();
 
