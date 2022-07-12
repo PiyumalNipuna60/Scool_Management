@@ -7,6 +7,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.Student;
 import util.CrudUtil;
+import views.TM.tableTm;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +19,7 @@ public class StudentDashBoardFormController {
     public TextField txtStudentEmail;
     public TextField txtStudentName;
     public TextField txtStudentNic;
-    public TableView tblStudent;
+    public TableView<tableTm> tblStudent;
     public TableColumn colStudentId;
     public TableColumn colEmail;
     public TableColumn colSId;
@@ -26,6 +27,10 @@ public class StudentDashBoardFormController {
     public TableColumn colAddress;
     public TableColumn colNic;
     public TableColumn colOption;
+
+    public void initialize() {
+
+    }
 
     public void saveOnAction(ActionEvent actionEvent) {
         Student s=new Student(
