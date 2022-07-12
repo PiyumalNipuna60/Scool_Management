@@ -1,13 +1,14 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.Student;
 import util.CrudUtil;
 import views.TM.tableTm;
+
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,13 +23,49 @@ public class StudentDashBoardFormController {
     public TableView<tableTm> tblStudent;
     public TableColumn colStudentId;
     public TableColumn colEmail;
-    public TableColumn colSId;
     public TableColumn colContact;
     public TableColumn colAddress;
     public TableColumn colNic;
     public TableColumn colOption;
+    public TableColumn colSName;
+    public Label lblDate;
+    public Label lblTime;
+
 
     public void initialize() {
+
+        colStudentId.setCellValueFactory(new PropertyValueFactory<>("std"));
+        colSName.setCellValueFactory(new PropertyValueFactory<>("sName"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("sEmail"));
+        colContact.setCellValueFactory(new PropertyValueFactory<>("sContact"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("sAddress"));
+        colNic.setCellValueFactory(new PropertyValueFactory<>("sNic"));
+
+        LoadAllStudent();
+    }
+
+    private void LoadAllStudent() {
+        try {
+            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Student");
+
+            ObservableList<tableTm> obList1=FXCollections.observableArrayList();
+            while (resultSet.next()){
+                obList1.add(
+                        new tableTm(
+                                resultSet.getString("student_id"),
+                                resultSet.getString("student_name"),
+                                resultSet.getString("email"),
+                                resultSet.getString("contact"),
+                                resultSet.getString("address"),
+                                resultSet.getString("nic")
+                        )
+                );
+            }
+            tblStudent.setItems(obList1);
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -39,13 +76,16 @@ public class StudentDashBoardFormController {
         try {
             if (CrudUtil.execute("INSERT INTO Student VALUES(?,?,?,?,?,?)", s.getsId(), s.getsName(), s.getsEmail(), s.getsContact(), s.getsAddress(), s.getsNic())) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Save Customer!..").show();
+                LoadAllStudent();
             } else {
                 new Alert(Alert.AlertType.CONFIRMATION, "Something went Wrong!..").show();
             }
         }catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        tblStudent.refresh();
         ClearField();
+
     }
 
     public void UpdateOnAction(ActionEvent actionEvent) {
@@ -55,12 +95,14 @@ public class StudentDashBoardFormController {
         try {
             if (CrudUtil.execute("UPDATE Student SET student_name=?,email=?,contact=?,address=?,nic=? WHERE student_id=?",s.getsName(),s.getsEmail(),s.getsContact(),s.getsAddress(),s.getsNic(),s.getsId())){
                 new Alert(Alert.AlertType.CONFIRMATION, "Updated!..").show();
+                LoadAllStudent();
             } else {
                 new Alert(Alert.AlertType.WARNING, "Something Wrong!..").show();
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+        tblStudent.refresh();
         ClearField();
     }
 
@@ -68,10 +110,12 @@ public class StudentDashBoardFormController {
         try {
             if (CrudUtil.execute("DELETE FROM Student WHERE student_id=?",txtStudentId.getText())) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Deleted!..").show();
+                LoadAllStudent();
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+        tblStudent.refresh();
         ClearField();
     }
 
@@ -99,6 +143,9 @@ public class StudentDashBoardFormController {
         txtStudentContact.clear();
         txtStudentAddress.clear();
         txtStudentNic.clear();
+    }
+
+    public void clearTextFieldOnAction(ActionEvent actionEvent) {
     }
 }
 

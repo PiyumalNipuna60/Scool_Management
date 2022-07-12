@@ -24,17 +24,17 @@
       <TextField fx:id="txtStudentName" layoutX="196.0" layoutY="75.0" prefHeight="31.0" prefWidth="154.0" promptText="Student Name" />
       <TextField fx:id="txtStudentNic" layoutX="852.0" layoutY="75.0" prefHeight="31.0" prefWidth="154.0" promptText="NIC" />
       <Separator layoutX="14.0" layoutY="44.0" prefHeight="0.0" prefWidth="982.0" />
-      <Button layoutX="686.0" layoutY="139.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="31.0" prefWidth="88.0" text="Save">
+      <Button layoutX="685.0" layoutY="149.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="31.0" prefWidth="88.0" text="Save">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="796.0" layoutY="139.0" mnemonicParsing="false" onAction="#UpdateOnAction" prefHeight="31.0" prefWidth="88.0" text="Update">
+      <Button layoutX="795.0" layoutY="149.0" mnemonicParsing="false" onAction="#UpdateOnAction" prefHeight="31.0" prefWidth="88.0" text="Update">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="908.0" layoutY="139.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="31.0" prefWidth="88.0" text="Delete">
+      <Button layoutX="907.0" layoutY="149.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="31.0" prefWidth="88.0" text="Delete">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -43,13 +43,37 @@
       <TableView fx:id="tblStudent" layoutX="31.0" layoutY="213.0" prefHeight="339.0" prefWidth="959.0">
         <columns>
           <TableColumn fx:id="colStudentId" prefWidth="94.0" text="Student Id" />
-          <TableColumn fx:id="colSId" prefWidth="112.0" text="Student Name" />
-            <TableColumn fx:id="colEmail" prefWidth="185.0" text="Email" />
-            <TableColumn fx:id="colContact" prefWidth="105.0" text="Contact" />
-            <TableColumn fx:id="colAddress" prefWidth="178.0" text="Address" />
-            <TableColumn fx:id="colNic" prefWidth="139.0" text="NIC" />
-            <TableColumn fx:id="colOption" prefWidth="145.0" text="Option" />
+          <TableColumn fx:id="colSName" prefWidth="141.0" text="Student Name" />
+            <TableColumn fx:id="colEmail" prefWidth="229.0" text="Email" />
+            <TableColumn fx:id="colContact" prefWidth="141.0" text="Contact" />
+            <TableColumn fx:id="colAddress" prefWidth="195.0" text="Address" />
+            <TableColumn fx:id="colNic" prefWidth="158.0" text="NIC" />
         </columns>
       </TableView>
+      <Label layoutX="702.0" layoutY="12.0" text="Date ; ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDate" layoutX="754.0" layoutY="12.0" text="2022:01:01" textFill="#a13434">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="863.0" layoutY="12.0" text="Time : ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTime" layoutX="915.0" layoutY="12.0" text="10:35:00" textFill="#a13434">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="862.0" layoutY="118.0" mnemonicParsing="false" onAction="#clearTextFieldOnAction" prefHeight="20.0" prefWidth="134.0" text="Clear">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

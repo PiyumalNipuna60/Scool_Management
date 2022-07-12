@@ -9,19 +9,17 @@ public class tableTm {
     String sContact;
     String sAddress;
     String sNic;
-    Button btn;
 
     public tableTm() {
     }
 
-    public tableTm(String sId, String sName, String sEmail, String sContact, String sAddress, String sNic, Button btn) {
+    public tableTm(String sId, String sName, String sEmail, String sContact, String sAddress, String sNic) {
         this.sId = sId;
         this.sName = sName;
         this.sEmail = sEmail;
         this.sContact = sContact;
         this.sAddress = sAddress;
         this.sNic = sNic;
-        this.btn = btn;
     }
 
     public String getsId() {
@@ -72,14 +70,6 @@ public class tableTm {
         this.sNic = sNic;
     }
 
-    public Button getBtn() {
-        return btn;
-    }
-
-    public void setBtn(Button btn) {
-        this.btn = btn;
-    }
-
     @Override
     public String toString() {
         return "tableTm{" +
@@ -89,7 +79,6 @@ public class tableTm {
                 ", sContact='" + sContact + '\'' +
                 ", sAddress='" + sAddress + '\'' +
                 ", sNic='" + sNic + '\'' +
-                ", btn=" + btn +
                 '}';
     }
 }

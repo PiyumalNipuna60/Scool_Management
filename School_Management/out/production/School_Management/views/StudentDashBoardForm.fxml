@@ -43,12 +43,11 @@
       <TableView fx:id="tblStudent" layoutX="31.0" layoutY="213.0" prefHeight="339.0" prefWidth="959.0">
         <columns>
           <TableColumn fx:id="colStudentId" prefWidth="94.0" text="Student Id" />
-          <TableColumn fx:id="colSId" prefWidth="112.0" text="Student Name" />
-            <TableColumn fx:id="colEmail" prefWidth="185.0" text="Email" />
-            <TableColumn fx:id="colContact" prefWidth="105.0" text="Contact" />
-            <TableColumn fx:id="colAddress" prefWidth="178.0" text="Address" />
-            <TableColumn fx:id="colNic" prefWidth="139.0" text="NIC" />
-            <TableColumn fx:id="colOption" prefWidth="145.0" text="Option" />
+          <TableColumn fx:id="colSName" prefWidth="141.0" text="Student Name" />
+            <TableColumn fx:id="colEmail" prefWidth="229.0" text="Email" />
+            <TableColumn fx:id="colContact" prefWidth="141.0" text="Contact" />
+            <TableColumn fx:id="colAddress" prefWidth="195.0" text="Address" />
+            <TableColumn fx:id="colNic" prefWidth="158.0" text="NIC" />
         </columns>
       </TableView>
    </children>
